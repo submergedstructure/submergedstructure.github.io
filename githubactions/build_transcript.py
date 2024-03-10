@@ -82,7 +82,7 @@ def process_and_display_paragraph(paragraph):
 language_code = "pl"
 lesson_id = 29053833
   
-lesson = get_json_response(f'https://www.lingq.com/api/v3/{language_code}/lessons/{lessson_id}/')
+lesson = get_json_response(f'https://www.lingq.com/api/v3/{language_code}/lessons/{lesson_id}/')
 
 html = render_template('templates/multiplayer_single.html', {'audio_url' : lesson['audioUrl']})
 
