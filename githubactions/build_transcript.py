@@ -87,7 +87,7 @@ lesson = get_json_response(f'https://www.lingq.com/api/v3/{language_code}/lesson
 transcript = '';
 last_timestamp = 0;
 
-for parts in lesson['tokenized_text']:
+for parts in lesson['tokenizedText']:
   text = parts[0]['text']
   if parts[0]['timestamp'] and parts[0]['timestamp'][0]:
     timestamp_start = int(float(parts[0]['timestamp'][0]) * 1000)
