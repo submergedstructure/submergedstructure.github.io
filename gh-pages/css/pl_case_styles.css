@@ -1,0 +1,100 @@
+/* style for popup windows */
+.popup {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+a {opacity: 50%}
+
+div.preamble, div.lesson {
+  margin-bottom: 1em;
+  padding: 0.7em;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.Gender_Fem::after {
+    content: " ♀";
+    color: pink;
+    background-color:white;
+}
+.Gender_Masc::after {
+    content: " ♂";
+    color: blue;
+    background-color:white;
+}
+.Gender_Neut::after {
+  content: " ⚧";
+  color: black;
+  background-color:white;
+
+}
+.Gender_Neut:hover,
+.Gender_Masc:hover,
+.Gender_Fem:hover {border: 1px dashed}
+
+.Gender_Neut,
+.Gender_Masc,
+.Gender_Fem {border: 1px dashed transparent}
+
+.Animacy_Inan::after, .Animacy_Hum::after, .Animacy_Nhum::after {opacity:70%}
+
+.Animacy_Inan::after {
+    content: "⚙️♂";
+    color: black;
+    background-color:white;
+}
+
+.Animacy_Hum::after {
+    content: "🙎‍♂️♂";
+    color: black;
+    background-color:white;
+}
+.Animacy_Nhum::after {
+    content: "🐶♂";
+    color: black;
+    background-color:white;
+}
+
+.Number_Ptan, .Number_Plur {
+text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: black;
+}
+.Number_Ptan {
+  text-decoration-style: dashed;
+
+}
+.Case_Nom {
+  color: #006400a6; 
+  background-color: #90ee905c
+}
+.Case_Ins {
+  color: #FF8C00; 
+}
+.Case_Acc {
+    color: yellow; 
+    background-color:lightgray;
+}
+.Case_Gen {
+    color: #DC143C; 
+}
+.Case_Loc {
+    color: #9400D3; 
+}
+.Case_Dat {
+    color: #ff149385; 
+    background-color:#ffb6c17d;
+}
+.Case_Voc {
+    color: white;
+    background-color:black;
+}

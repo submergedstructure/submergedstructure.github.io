@@ -54,6 +54,7 @@ def legal_filename(filename):
 
 # Function to process text and return HTML with color-coded cases and tooltips
 def process_and_display_paragraph(paragraph):
+    doc = nlp(paragraph)
     highlighted_text = ""
     for token in doc:
 
@@ -78,7 +79,13 @@ def process_and_display_paragraph(paragraph):
         highlighted_text += f'<span class="{styling_class}" data-tooltip="{tooltip_text}">{token.text}</span>'
 
     return f"<p>{highlighted_text}</p>\n"
-  
+
+
+#@title Choose a language model
+model = "pl_core_news_lg" #@param ["fi_core_news_lg", "de_core_news_lg", "en_core_web_lg", "nl_core_news_lg", "sv_core_news_lg", "da_core_news_lg", "pl_core_news_lg", "ru_core_news_lg", "uk_core_news_lg"]
+
+nlp = spacy.load(model)
+
 language_code = "pl"
 
 course_id = 1646223
@@ -96,7 +103,7 @@ for lesson_from_course in course['lessons']:
 
  
   for parts in lesson['tokenizedText']:
-    text = parts[0]['text']
+    text = process_and_display_paragraph(parts[0]['text'])
     if parts[0]['timestamp'] and parts[0]['timestamp'][0]:
       timestamp_start = int(float(parts[0]['timestamp'][0]) * 1000)
       timestamp_end = int(float(parts[0]['timestamp'][1]) * 1000)
