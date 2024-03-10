@@ -43,6 +43,16 @@
   color: #777;
 }
 
+.hyperaudio-transcript .active{
+  background-color: #efefef;
+}
+
+.hyperaudio-transcript .active > .active {
+  background-color: #ccf;
+  text-decoration:  #00f underline;
+  text-decoration-thickness: 3px;
+}
+
 .hyperaudio-transcript .search-match {
   background-color: pink;
 }
