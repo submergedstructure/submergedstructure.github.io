@@ -90,52 +90,54 @@ nlp = spacy.load(model)
 
 language_code = "pl"
 
-course_id = 1646223
+for course_id in [1646223, 289027]: # , 1440209, 1646225, 902291
 
-course = get_json_response(f'https://www.lingq.com/api/v2/{language_code}/collections/{course_id}')
+  course = get_json_response(f'https://www.lingq.com/api/v2/{language_code}/collections/{course_id}')
 
-no = 1
-players_html = ''
-for lesson_from_course in course['lessons']:
+  no = 1
+  players_html = ''
+  for lesson_from_course in course['lessons']:
 
-  lesson = get_json_response(f'https://www.lingq.com/api/v3/{language_code}/lessons/{lesson_from_course['id']}/')
+    lesson = get_json_response(f'https://www.lingq.com/api/v3/{language_code}/lessons/{lesson_from_course['id']}/')
 
-  transcript = '';
-  last_timestamp = 0;
+    transcript = '';
+    last_timestamp = 0;
 
- 
-  for parts in lesson['tokenizedText']:
-    if parts[0]['timestamp'] and parts[0]['timestamp'][0]:
-      timestamp_start = int(float(parts[0]['timestamp'][0]) * 1000)
-      timestamp_end = int(float(parts[0]['timestamp'][1]) * 1000)
-      duration = timestamp_end - timestamp_start
-      last_timestamp = timestamp_end
-    else:
-      timestamp_start = last_timestamp
-      duration = 0
-    attribute_string = f"data-m=\"{timestamp_start}\" data-d=\"{duration}\""
-    text = process_paragraph(parts[0]['text'], attribute_string)
-    transcript += f"<p {attribute_string}>{text}</p>\n"
+  
+    for parts in lesson['tokenizedText']:
+      if parts[0]['timestamp'] and parts[0]['timestamp'][0]:
+        timestamp_start = int(float(parts[0]['timestamp'][0]) * 1000)
+        timestamp_end = int(float(parts[0]['timestamp'][1]) * 1000)
+        duration = timestamp_end - timestamp_start
+        last_timestamp = timestamp_end
+      else:
+        timestamp_start = last_timestamp
+        duration = 0
+      attribute_string = f"data-m=\"{timestamp_start}\" data-d=\"{duration}\""
+      text = process_paragraph(parts[0]['text'], attribute_string)
+      transcript += f"<p {attribute_string}>{text}</p>\n"
 
-  players_html += render_template('templates/multiplayer_player.html',
-                            {'audio_url' : lesson['audioUrl'],
-                            'title' : lesson['title'],
-                            'reader_lesson_url' : f"https://www.lingq.com/en/learn/pl/web/reader/{lesson['id']}/",
-                            'transcript' : transcript,
-                            'no' : f"{no}"}) + "\n"
-  no += 1
+    players_html += render_template('templates/multiplayer_player.html',
+                              {'audio_url' : lesson['audioUrl'],
+                              'title' : lesson['title'],
+                              'reader_lesson_url' : f"https://www.lingq.com/en/learn/pl/web/reader/{lesson['id']}/",
+                              'transcript' : transcript,
+                              'no' : f"{no}"}) + "\n"
+    no += 1
 
 
-initialise_players = ''
-for n in range(1, no):
-  initialise_players += f"new HyperaudioLite(\"hypertranscript{n}\", \"hyperplayer{n}\", minimizedMode, autoScroll, doubleClick, webMonetization, playOnClick);\n"
+  initialise_players = ''
+  for n in range(1, no):
+    initialise_players += f"new HyperaudioLite(\"hypertranscript{n}\", \"hyperplayer{n}\", minimizedMode, autoScroll, doubleClick, webMonetization, playOnClick);\n"
 
-html = render_template('templates/multiplayer_body.html',
-                            {'title' : course['title'],
-                            'reader_course_url' : f"https://www.lingq.com/en/learn/pl/web/library/course/{course_id}/",
-                            'course_description' : course['description'],
-                            'players' : players_html,
-                            'initialise_players' : initialise_players})
+  html = render_template('templates/multiplayer_body.html',
+                              {'title' : course['title'],
+                              'reader_course_url' : f"https://www.lingq.com/en/learn/pl/web/library/course/{course_id}/",
+                              'course_description' : course['description'],
+                              'players' : players_html,
+                              'initialise_players' : initialise_players})
 
-with open("gh-pages/test.html", "w", encoding="utf-8") as file:
-  file.write(html)
+  filename = legal_filename(course['title'])
+  with open(f"gh-pages/{filename}.html", "w", encoding="utf-8") as file:
+    file.write(html)
+
