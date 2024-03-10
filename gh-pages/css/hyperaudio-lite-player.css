@@ -48,9 +48,9 @@
 }
 
 .hyperaudio-transcript .active > .active {
-  background-color: #ccf;
-  text-decoration:  #00f underline;
+  text-decoration:  lightgray underline;
   text-decoration-thickness: 3px;
+  text-underline-offset: 5px;
 }
 
 .hyperaudio-transcript .search-match {
