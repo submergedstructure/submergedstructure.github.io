@@ -113,7 +113,7 @@ for lesson_from_course in course['lessons']:
     else:
       timestamp_start = last_timestamp
       duration = 0
-    attribute_string = data-m=\"{timestamp_start}\" data-d=\"{duration}\"
+    attribute_string = f"data-m=\"{timestamp_start}\" data-d=\"{duration}\""
     text = process_paragraph(parts[0]['text'], attribute_string)
     transcript += f"<p {attribute_string}>{text}</p>\n"
 
