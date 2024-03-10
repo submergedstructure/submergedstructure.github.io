@@ -97,7 +97,7 @@ for parts in lesson['tokenized_text']:
   else:
     timestamp = last_timestamp
     duration = 0
-  transcript += f"<p data-m=\"{timestamp_start}\" data-d="{duration}">{text}</p>\n"
+  transcript += f"<p data-m=\"{timestamp_start}\" data-d=\"{duration}\">{text}</p>\n"
 
 html = render_template('templates/multiplayer_single.html', {'audio_url' : lesson['audioUrl']
                                                              'transcript' : transcript})
