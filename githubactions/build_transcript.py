@@ -86,7 +86,7 @@ lesson = get_json_response(f'https://www.lingq.com/api/v3/{language_code}/lesson
 
 html = render_template('templates/multiplayer_single.html', {'audio_url' : lesson['audioUrl']})
 
-with open("test.html", "w", encoding="utf-8") as file:
+with open("gh-pages/test.html", "w", encoding="utf-8") as file:
   file.write(html)
 
 
