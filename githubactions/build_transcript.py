@@ -81,6 +81,8 @@ def process_and_display_paragraph(paragraph):
   
 language_code = "pl"
 
+course_id = 1646223
+
 course = get_json_response(f'https://www.lingq.com/api/v2/{language_code}/collections/{course_id}')
 
 no = 1
