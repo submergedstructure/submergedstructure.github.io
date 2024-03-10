@@ -48,7 +48,6 @@
 }
 
 .hyperaudio-transcript .active > .active {
-  background-color: #ccf;
   text-decoration:  #00f underline;
   text-decoration-thickness: 3px;
 }
