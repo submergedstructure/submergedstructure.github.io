@@ -80,7 +80,7 @@ def process_and_display_paragraph(paragraph):
         # Append the token span with style and tooltip
         highlighted_text += f'<span class="{styling_class}" data-tooltip="{tooltip_text}">{token.text}</span>'
 
-    return f"<p>{highlighted_text}</p>\n"
+    return highlighted_text
 
 
 #@title Choose a language model
