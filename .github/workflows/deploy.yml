@@ -60,6 +60,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add html_output
+          git add gh-pages
           git commit -m "generated new transcripts"
           git push
