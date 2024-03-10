@@ -10,25 +10,7 @@
   <script src="https://platform.twitter.com/widgets.js"></script>
 </head>
 <body>
-
-  <!--*******************************************************************-->
-  <!--****** I n t e r a c t i v e   T r a n s c r i p t   1 ************-->
-  <!--*******************************************************************-->
-
-  <audio id="hyperplayer1" style="z-index: 5000000; position:relative; width:400px" src="{{audio_url}}" controls></audio>
-
-  <div id="hypertranscript1" class="hyperaudio-transcript" data-instance="1" style="overflow-y:scroll; height:600px; position:relative; border-style:dashed; border-width: 1px; border-color:#999; padding: 8px">
-    <article>
-      <header></header>
-      <section class="active">
-      <header></header>
-
-      {{transcript}}
-      <footer></footer>
-    </section>
-    </article>
-  </div>
-
+  {{players}}
   <script src="js/hyperaudio-lite.js"></script>
   <script src="js/share-this.js"></script>
   <script src="js/share-this-twitter.js"></script>
@@ -46,8 +28,7 @@
   let autoScroll = true;
   let doubleClick = false;
 
-  new HyperaudioLite("hypertranscript1", "hyperplayer1", minimizedMode, autoScroll, doubleClick);
-
+  {{initialise_players}}
   </script>
 </body>
 </html>

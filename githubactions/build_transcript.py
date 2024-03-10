@@ -80,27 +80,44 @@ def process_and_display_paragraph(paragraph):
     return f"<p>{highlighted_text}</p>\n"
   
 language_code = "pl"
-lesson_id = 29053833
-  
-lesson = get_json_response(f'https://www.lingq.com/api/v3/{language_code}/lessons/{lesson_id}/')
 
-transcript = '';
-last_timestamp = 0;
+course = get_json_response(f'https://www.lingq.com/api/v2/{language_code}/collections/{course_id})
 
-for parts in lesson['tokenizedText']:
-  text = parts[0]['text']
-  if parts[0]['timestamp'] and parts[0]['timestamp'][0]:
-    timestamp_start = int(float(parts[0]['timestamp'][0]) * 1000)
-    timestamp_end = int(float(parts[0]['timestamp'][1]) * 1000)
-    duration = timestamp_end - timestamp_start
-    last_timestamp = timestamp_end
-  else:
-    timestamp_start = last_timestamp
-    duration = 0
-  transcript += f"<p data-m=\"{timestamp_start}\" data-d=\"{duration}\">{text}</p>\n"
+no = 1
+players_html = ''
+for lesson_from_course in course['lessons']:
 
-html = render_template('templates/multiplayer_single.html', {'audio_url' : lesson['audioUrl'],
-                                                             'transcript' : transcript})
+  lesson = get_json_response(f'https://www.lingq.com/api/v3/{language_code}/lessons/{lesson_from_course['id']}/')
+
+  transcript = '';
+  last_timestamp = 0;
+
+ 
+  for parts in lesson['tokenizedText']:
+    text = parts[0]['text']
+    if parts[0]['timestamp'] and parts[0]['timestamp'][0]:
+      timestamp_start = int(float(parts[0]['timestamp'][0]) * 1000)
+      timestamp_end = int(float(parts[0]['timestamp'][1]) * 1000)
+      duration = timestamp_end - timestamp_start
+      last_timestamp = timestamp_end
+    else:
+      timestamp_start = last_timestamp
+      duration = 0
+    transcript += f"<p data-m=\"{timestamp_start}\" data-d=\"{duration}\">{text}</p>\n"
+
+  players_html += render_template('templates/multiplayer_player.html',
+                            {'audio_url' : lesson['audioUrl'],
+                            'transcript' : transcript,
+                            'no' : no}) + "\n"
+  no += 1
+
+initialise_players = ''
+for n in range(1, no):
+  initialise_players += f"new HyperaudioLite(\"hypertranscript{n}\", \"hyperplayer{n}\", minimizedMode, autoScroll, doubleClick);\n"
+
+html = render_template('templates/multiplayer_body.html',
+                            {'players' : players_html,
+                            'initialise_players' : initialise_players})
 
 with open("gh-pages/test.html", "w", encoding="utf-8") as file:
   file.write(html)

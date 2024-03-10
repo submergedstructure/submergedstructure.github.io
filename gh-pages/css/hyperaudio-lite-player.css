@@ -32,7 +32,7 @@
 }
 
 .hyperaudio-transcript .read {
-  color: #000;
+  opacity: 100%;
 }
 
 .hyperaudio-transcript .active > .active {
@@ -40,7 +40,7 @@
 }
 
 .hyperaudio-transcript .unread {
-  color: #777;
+  opacity: 60%;
 }
 
 .hyperaudio-transcript .active{
