@@ -126,7 +126,7 @@ for lesson_from_course in course['lessons']:
 
 initialise_players = ''
 for n in range(1, no):
-  initialise_players += f"new HyperaudioLite(\"hypertranscript{n}\", \"hyperplayer{n}\", false, true, false, false, true);\n"
+  initialise_players += f"new HyperaudioLite(\"hypertranscript{n}\", \"hyperplayer{n}\", minimizedMode, autoScroll, doubleClick, webMonetization, playOnClick);\n"
 
 html = render_template('templates/multiplayer_body.html',
                             {'players' : players_html,
