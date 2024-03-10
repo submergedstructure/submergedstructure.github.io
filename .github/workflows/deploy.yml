@@ -41,7 +41,8 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r githubactions/requirements.txt
-
+        
+      - name: build_transcript
         env:
           LINGQ_API_KEY: ${{ secrets.LINGQ_API_KEY }}
         run: python githubactions/build_transcript.py
