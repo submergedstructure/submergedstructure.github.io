@@ -119,6 +119,8 @@ for lesson_from_course in course['lessons']:
 
   players_html += render_template('templates/multiplayer_player.html',
                             {'audio_url' : lesson['audioUrl'],
+                            'title' : lesson['title'],
+                            'reader_lesson_url' : f"https://www.lingq.com/en/learn/pl/web/reader/{lesson['id']}/",
                             'transcript' : transcript,
                             'no' : f"{no}"}) + "\n"
   no += 1
