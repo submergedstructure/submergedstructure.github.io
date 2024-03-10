@@ -39,8 +39,7 @@ jobs:
         with:
           python-version: 3.x
           cache: 'pip' # caching pip dependencies
-      -name: Pip
-        run: pip install -r githubactions/requirements.txt
+      - run: pip install -r githubactions/requirements.txt
 
         
       - name: build_transcript
