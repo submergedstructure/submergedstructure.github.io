@@ -33,6 +33,19 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: pip install -r githubactions/requirements.txt
+
+        env:
+          LINGQ_API_KEY: ${{ secrets.LINGQ_API_KEY }}
+        run: python githubactions/build_transcript.py
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
