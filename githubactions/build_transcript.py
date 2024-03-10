@@ -11,6 +11,8 @@ import os
 import unicodedata
 import re
 
+import spacy
+
 """# Helper Functions"""
 
 def render_template(template_path, context=None):
