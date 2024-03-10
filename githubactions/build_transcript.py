@@ -84,7 +84,23 @@ lesson_id = 29053833
   
 lesson = get_json_response(f'https://www.lingq.com/api/v3/{language_code}/lessons/{lesson_id}/')
 
-html = render_template('templates/multiplayer_single.html', {'audio_url' : lesson['audioUrl']})
+transcript = '';
+last_timestamp = 0;
+
+for parts in lesson['tokenized_text']:
+  text = parts[0]['text']
+  if parts[0]['timestamp'] && parts[0]['timestamp'][0]:
+    timestamp_start = int(float(parts[0]['timestamp'][0]) * 1000)
+    timestamp_end = int(float(parts[0]['timestamp'][1]) * 1000)
+    duration = timestamp_end - timestamp_start
+    last_timestamp = timestamp_end
+  else:
+    timestamp = last_timestamp
+    duration = 0
+  transcript += f"<p data-m=\"{timestamp_start}\" data-d="{duration}">{text}</p>\n"
+
+html = render_template('templates/multiplayer_single.html', {'audio_url' : lesson['audioUrl']
+                                                             'transcript' : transcript})
 
 with open("gh-pages/test.html", "w", encoding="utf-8") as file:
   file.write(html)
