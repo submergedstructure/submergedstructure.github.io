@@ -1,8 +1,5 @@
 /*! (C) The Hyperaudio Project. MIT @license: en.wikipedia.org/wiki/MIT_License. */
 /* Updated for Version 2.1 */
-
-
-
 .hyperaudio-transcript .read {
   opacity: 100%;
 }
@@ -17,13 +14,8 @@
   text-underline-offset: 5px;
 }
 
-
 [data-m] {
   cursor: pointer;
-}
-
-body {
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 .speaker {

@@ -1,3 +1,12 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.2;
+  font-size:1.4em;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
 /* style for popup windows */
 .popup {
   display: none;
@@ -51,17 +60,20 @@ div.preamble, div.lesson {
     content: "⚙️♂";
     color: black;
     background-color:white;
+    padding-left:3px;
 }
 
 .Animacy_Hum::after {
     content: "🙎‍♂️♂";
     color: black;
     background-color:white;
+    padding-left:3px;
 }
 .Animacy_Nhum::after {
     content: "🐶♂";
     color: black;
     background-color:white;
+    padding-left:3px;
 }
 
 .Number_Ptan, .Number_Plur {
@@ -75,7 +87,7 @@ text-decoration: underline;
 }
 .Case_Nom {
   color: #006400a6; 
-  background-color: #90ee905c
+  background-color: #90ee905c;
 }
 .Case_Ins {
   color: #FF8C00; 
@@ -83,6 +95,7 @@ text-decoration: underline;
 .Case_Acc {
     color: yellow; 
     background-color:lightgray;
+    
 }
 .Case_Gen {
     color: #DC143C; 
@@ -98,3 +111,4 @@ text-decoration: underline;
     color: white;
     background-color:black;
 }
+
