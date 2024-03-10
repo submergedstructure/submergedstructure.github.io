@@ -95,7 +95,7 @@ for parts in lesson['tokenizedText']:
     duration = timestamp_end - timestamp_start
     last_timestamp = timestamp_end
   else:
-    timestamp = last_timestamp
+    timestamp_start = last_timestamp
     duration = 0
   transcript += f"<p data-m=\"{timestamp_start}\" data-d=\"{duration}\">{text}</p>\n"
 
