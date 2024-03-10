@@ -99,7 +99,7 @@ for parts in lesson['tokenized_text']:
     duration = 0
   transcript += f"<p data-m=\"{timestamp_start}\" data-d=\"{duration}\">{text}</p>\n"
 
-html = render_template('templates/multiplayer_single.html', {'audio_url' : lesson['audioUrl']
+html = render_template('templates/multiplayer_single.html', {'audio_url' : lesson['audioUrl'],
                                                              'transcript' : transcript})
 
 with open("gh-pages/test.html", "w", encoding="utf-8") as file:
