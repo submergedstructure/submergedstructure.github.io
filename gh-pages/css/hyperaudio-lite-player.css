@@ -21,3 +21,13 @@
 .speaker {
   font-weight: bold;
 }
+.hyperaudio-transcript {
+  overflow-y:scroll;
+  height:600px;
+  position:relative;
+  border-style:dashed;
+  border-width: 1px;
+  border-color:#999;
+  border-radius: 20px;
+  padding: 8px  
+}

@@ -3,28 +3,41 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Multiplayer Test</title>
+  <title>{{title}}}</title>
   <link rel="stylesheet" href="css/hyperaudio-lite-player.css">
-  <link rel="stylesheet" href="css/share-this.css">
   <link rel="stylesheet" href="css/pl_case_styles.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.js"></script>
-  <script src="https://platform.twitter.com/widgets.js"></script>
   <script src="js/tooltip.js"></script>
 </head>
 <body>
+  <h1><a href= "{{reader_course_url}}">{{title}}</a></h1>
+  <p>{{course_description}}</p>
+
+  <div class="preamble">
+  <p>Material is from <a href="https://www.lingq.com/">LingQ</a>, a language learning platform.</p>
+  <h3>Key 🔑</h3>
+  <ul>
+    <li>Number: <span class="Number_Plur">Plur</span> <span class="Number_Ptan">Ptan</span></li>
+    <li>Gender: <span class="Gender_Masc">Masc</span> <span class="Gender_Fem">Fem</span> <span
+            class="Gender_Neut">Neut</span></li>
+    <li>Case:</li>
+    <ul>
+        <li><span class="Case_Nom" data-tooltip="Case=Nom">Nominative (Mianownik)</span></li>
+        <li><span class="Case_Acc" data-tooltip="Case=Acc">Accusative (Biernik)</span></li>
+        <li><span class="Case_Ins" data-tooltip="Case=Ins">Instrumental (Narzędnik)</span></li>
+        <li><span class="Case_Gen" data-tooltip="Case=Gen">Genitive (Dopełniacz)</span></li>
+        <li><span class="Case_Loc" data-tooltip="Case=Loc">Locative (Miejscownik)</span></li>
+        <li><span class="Case_Dat" data-tooltip="Case=Dat">Dative (Celownik)</span></li>
+        <li><span class="Case_Voc" data-tooltip="Case=Voc">Vocative (Wołacz)</span></li>
+    </ul>
+    <li>Animacy: <span class="Animacy_Inan">Inan</span> <span class="Animacy_Nhum">Nhum</span> 
+        <span class="Animacy_Hum">Hum</span>
+    </li>
+</ul>
+  <p>Hover your cursor over any word to see more morphological information, including what is the dictionary (lemmatized) form of the word and what part of speech it is in the context.</p>
+  </div>
   {{players}}
   <script src="js/hyperaudio-lite.js"></script>
-  <script src="js/share-this.js"></script>
-  <script src="js/share-this-twitter.js"></script>
-  <script>
-
-  ShareThis({
-    sharers: [ ShareThisViaTwitter ],
-    selector: "article"
-  }).init();
-
-
-  // minimizedMode is still experimental - it aims to show the current words in the title, which can be seen on the browser tab.
 
   const minimizedMode = false;
   const autoScroll = true;

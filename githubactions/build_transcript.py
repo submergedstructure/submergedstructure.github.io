@@ -129,7 +129,10 @@ for n in range(1, no):
   initialise_players += f"new HyperaudioLite(\"hypertranscript{n}\", \"hyperplayer{n}\", minimizedMode, autoScroll, doubleClick, webMonetization, playOnClick);\n"
 
 html = render_template('templates/multiplayer_body.html',
-                            {'players' : players_html,
+                            {'title' : course['title'],
+                            'reader_course_url' : f"https://www.lingq.com/en/learn/pl/web/library/course/{course_id}/",
+                            'course_description' : course['description'],
+                            'players' : players_html,
                             'initialise_players' : initialise_players})
 
 with open("gh-pages/test.html", "w", encoding="utf-8") as file:
