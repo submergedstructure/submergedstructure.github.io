@@ -89,7 +89,7 @@ last_timestamp = 0;
 
 for parts in lesson['tokenized_text']:
   text = parts[0]['text']
-  if parts[0]['timestamp'] && parts[0]['timestamp'][0]:
+  if parts[0]['timestamp'] and parts[0]['timestamp'][0]:
     timestamp_start = int(float(parts[0]['timestamp'][0]) * 1000)
     timestamp_end = int(float(parts[0]['timestamp'][1]) * 1000)
     duration = timestamp_end - timestamp_start
