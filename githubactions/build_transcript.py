@@ -119,7 +119,7 @@ for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
           duration = 0
         attribute_string = f"data-m=\"{timestamp_start}\" data-d=\"{duration}\""
         text = process_paragraph(setence['text'], attribute_string)
-        paragraph_text += f"<span class="tk" {attribute_string}>{text}</span>\n"
+        paragraph_text += f"<span class=\"tk\" {attribute_string}>{text}</span>\n"
       transcript += f"<p>{paragraph_text}</p>\n"
     players_html += render_template('templates/multiplayer_player.html',
                               {'audio_url' : lesson['audioUrl'],
