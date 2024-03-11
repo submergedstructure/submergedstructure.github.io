@@ -110,8 +110,8 @@ for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
     for paragraph in lesson['tokenizedText']:
       for sentence in paragraph:
         if setence['timestamp'] and setence['timestamp'][0]:
-          timestamp_start = int(float(parts[0]['timestamp'][0]) * 1000)
-          timestamp_end = int(float(parts[0]['timestamp'][1]) * 1000)
+          timestamp_start = int(float(setence['timestamp'][0]) * 1000)
+          timestamp_end = int(float(setence['timestamp'][1]) * 1000)
           duration = timestamp_end - timestamp_start
           last_timestamp = timestamp_end
         else:
