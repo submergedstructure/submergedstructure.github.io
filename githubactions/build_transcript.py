@@ -104,10 +104,9 @@ for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
 
     transcript = '';
     last_timestamp = 0;
-
-  
-    paragraph_text = ""
+ 
     for paragraph in lesson['tokenizedText']:
+      paragraph_text = ""
       for sentence in paragraph:
         if sentence['timestamp'] and sentence['timestamp'][0]:
           timestamp_start = int(float(sentence['timestamp'][0]) * 1000)
