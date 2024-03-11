@@ -1,22 +1,20 @@
 /*! (C) The Hyperaudio Project. MIT @license: en.wikipedia.org/wiki/MIT_License. */
 /* Updated for Version 2.1 */
-.hyperaudio-transcript .read {
-  opacity: 100%;
-}
 
 audio {
   width: 100%;
   position: relative;
 }
 
-.hyperaudio-transcript span.tk.unread {
-  opacity: 60%;
+.hyperaudio-transcript p,
+.hyperaudio-transcript span {
+  line-height: 1.8em;
 }
 
 .hyperaudio-transcript span.tk.active {
   text-decoration:  lightgray underline;
-  text-decoration-thickness: 3px;
-  text-underline-offset: 5px;
+  text-decoration-thickness: 10px;
+  text-underline-offset: 7px;
 }
 
 [data-m] {
