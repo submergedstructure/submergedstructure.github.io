@@ -28,8 +28,6 @@ audio {
   font-weight: bold;
 }
 .hyperaudio-transcript {
-  overflow-y:scroll;
-  max-height: 500px;
   position:relative;
   border-style:dashed;
   border-width: 1px;
