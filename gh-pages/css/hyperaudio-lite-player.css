@@ -10,11 +10,11 @@ audio {
   position:relative;
 }
 
-.hyperaudio-transcript p.unread {
+.hyperaudio-transcript span.tk.unread {
   opacity: 60%;
 }
 
-.hyperaudio-transcript p.active {
+.hyperaudio-transcript span.tk.active {
   text-decoration:  lightgray underline;
   text-decoration-thickness: 3px;
   text-underline-offset: 5px;
