@@ -5,9 +5,8 @@
 }
 
 audio {
-  margin: 0.5em;
-  z-index: 5000000;
-  position:relative;
+  width: 100%;
+  position: relative;
 }
 
 .hyperaudio-transcript span.tk.unread {
