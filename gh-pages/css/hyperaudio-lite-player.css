@@ -6,6 +6,8 @@
 
 audio {
   margin: 0.5em;
+  z-index: 5000000;
+  position:relative;
 }
 
 .hyperaudio-transcript p.unread {
