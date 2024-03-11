@@ -109,16 +109,16 @@ for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
     paragraph_text = ""
     for paragraph in lesson['tokenizedText']:
       for sentence in paragraph:
-        if setence['timestamp'] and setence['timestamp'][0]:
-          timestamp_start = int(float(setence['timestamp'][0]) * 1000)
-          timestamp_end = int(float(setence['timestamp'][1]) * 1000)
+        if sentence['timestamp'] and sentence['timestamp'][0]:
+          timestamp_start = int(float(sentence['timestamp'][0]) * 1000)
+          timestamp_end = int(float(sentence['timestamp'][1]) * 1000)
           duration = timestamp_end - timestamp_start
           last_timestamp = timestamp_end
         else:
           timestamp_start = last_timestamp
           duration = 0
         attribute_string = f"data-m=\"{timestamp_start}\" data-d=\"{duration}\""
-        text = process_paragraph(setence['text'], attribute_string)
+        text = process_paragraph(sentence['text'], attribute_string)
         paragraph_text += f"<span class=\"tk\" {attribute_string}>{text}</span>\n"
       transcript += f"<p>{paragraph_text}</p>\n"
     players_html += render_template('templates/multiplayer_player.html',
