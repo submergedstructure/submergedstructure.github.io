@@ -1,0 +1,16 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.2;
+  font-size:1.4em;
+  margin: 0.5em;
+  padding: 0;
+  color: #333;
+}
+
+
+div.list {
+  padding: 0.7em;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}

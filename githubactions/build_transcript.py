@@ -90,6 +90,8 @@ nlp = spacy.load(model)
 
 language_code = "pl"
 
+course_list_html = ""
+
 for course_id in [1646223, 289027]: # , 1440209, 1646225, 902291
 
   course = get_json_response(f'https://www.lingq.com/api/v2/{language_code}/collections/{course_id}')
@@ -138,6 +140,9 @@ for course_id in [1646223, 289027]: # , 1440209, 1646225, 902291
                               'initialise_players' : initialise_players})
 
   filename = legal_filename(course['title'])
+  course_list_html += f'<li><a href="{filename}.html">{course["title"]}</a></li>\n'
   with open(f"gh-pages/{filename}.html", "w", encoding="utf-8") as file:
     file.write(html)
 
+index_html = render_template('templates/index.html',
+                              {'course_list' : course_list_html})
