@@ -92,7 +92,7 @@ language_code = "pl"
 
 course_list_html = ""
 
-for course_id in [1646223, 289027]: # , 1440209, 1646225, 902291
+for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
 
   course = get_json_response(f'https://www.lingq.com/api/v2/{language_code}/collections/{course_id}')
 
