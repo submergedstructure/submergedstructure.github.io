@@ -146,3 +146,5 @@ for course_id in [1646223, 289027]: # , 1440209, 1646225, 902291
 
 index_html = render_template('templates/index.html',
                               {'course_list' : course_list_html})
+with open(f"gh-pages/index.html", "w", encoding="utf-8") as file:
+    file.write(html)
