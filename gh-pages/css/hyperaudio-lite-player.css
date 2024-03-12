@@ -17,9 +17,8 @@ audio {
 }
 
 .hyperaudio-transcript span.tk.active {
-  text-decoration:  lightgray underline;
-  text-decoration-thickness: 10px;
-  text-underline-offset: 7px;
+  border-bottom: 8px solid lightgray;
+  padding-bottom: 5px;
 }
 
 [data-m] {
