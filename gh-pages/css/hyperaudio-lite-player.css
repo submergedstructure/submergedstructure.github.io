@@ -4,6 +4,11 @@
 audio {
   width: 100%;
   position: relative;
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensure it stays on top of other content */
+  background-color: white; /* Optional: to ensure text is readable against underlying content */
 }
 
 .hyperaudio-transcript p,
