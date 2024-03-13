@@ -21,7 +21,7 @@ body {
 
 a {opacity: 50%}
 
-div.preamble, div.lesson {
+div.lesson {
   padding: 0.7em;
   border: 1px solid #ccc;
   border-radius: 10px;
