@@ -2,7 +2,6 @@
 /* Updated for Version 2.1 */
 
 audio {
-  width: 100%;
   position: relative;
   position: -webkit-sticky; /* For Safari */
   position: sticky;
