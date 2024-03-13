@@ -112,21 +112,21 @@ div.lesson {
     background-color:black;
 }
 
-.lesson:not(.disable_case_highlights) .Person_1::after,
-.lesson:not(.disable_case_highlights) .Person_2::after,
-.lesson:not(.disable_case_highlights) .Person_3::after {
+.lesson:not(.disable_person_highlights) .Person_1::after,
+.lesson:not(.disable_person_highlights) .Person_2::after,
+.lesson:not(.disable_person_highlights) .Person_3::after {
   font-size: smaller;
   font-weight: bold;
   vertical-align: super; /* This makes it appear as a superscript */
 }
 
-.lesson:not(.disable_case_highlights) .Person_1::after {
+.lesson:not(.disable_person_highlights) .Person_1::after {
   content: "1"; 
 }
-.lesson:not(.disable_case_highlights) .Person_2::after {
+.lesson:not(.disable_person_highlights) .Person_2::after {
   content: "2"; 
 }
-.lesson:not(.disable_case_highlights) .Person_3::after {
+.lesson:not(.disable_person_highlights) .Person_3::after {
   content: "3"; 
 }
 
