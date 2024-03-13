@@ -1,5 +1,47 @@
 
 document.addEventListener('DOMContentLoaded', function() {
+
+    // Select all button elements with the 'click_to_disable_grammar' class
+    const buttons = document.querySelectorAll('.click_to_disable_grammar');
+    
+    // Function to toggle class based on 'data-what' attribute
+    const toggleGrammarHighlighting = function() {
+        // Get the value of the 'data-what' attribute and prefix with 'disable_'
+        const disableClass = 'disable_' + this.getAttribute('data-what');
+        
+        // Search for the closest parent with the 'lesson' class
+        const lesson = this.closest('.lesson');
+        
+        // Toggle the constructed class on the found parent
+        if (lesson) {
+            lesson.classList.toggle(disableClass);
+            // Immediately reflect the change on the button's 'disabled' class state
+            checkAndToggleDisabled(this, disableClass);
+        }
+    };
+    
+    // Function to check and toggle the 'disabled' class
+    const checkAndToggleDisabled = function(button, disableClass) {
+        // Check if the closest parent '.lesson' has the constructed 'disable_' class
+        const lessonHasDisabled = button.closest('.lesson').classList.contains(disableClass);
+        // Set the 'disabled' class on the button based on the condition
+        button.classList.toggle('disabled', lessonHasDisabled);
+    };
+    
+    // Add click event listeners to all found buttons and set initial state
+    buttons.forEach(button => {
+        // Construct the class name based on the button's 'data-what' attribute
+        const disableClass = 'disable_' + button.getAttribute('data-what');
+        
+        // Initial check and set the 'disabled' state based on the class on the parent '.lesson'
+        checkAndToggleDisabled(button, disableClass);
+        
+        // Add the click event listener
+        button.addEventListener('click', toggleGrammarHighlighting);
+    });
+
+
+    
     // Function to create the popup
     function createPopup(text, target) {
         const popup = document.createElement('div');

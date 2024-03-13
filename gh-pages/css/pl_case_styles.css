@@ -28,85 +28,93 @@ div.preamble, div.lesson {
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-.Gender_Fem::after {
+.lesson:not(.disable_gender_highlights) .Gender_Fem::after {
     content: " ♀";
     color: pink;
     background-color:white;
 }
-.Gender_Masc::after {
+.lesson:not(.disable_gender_highlights) .Gender_Masc::after {
     content: " ♂";
     color: blue;
     background-color:white;
 }
-.Gender_Neut::after {
+.lesson:not(.disable_gender_highlights) .Gender_Neut::after {
   content: " ⚧";
   color: black;
   background-color:white;
 
 }
-.Gender_Neut:hover,
-.Gender_Masc:hover,
-.Gender_Fem:hover {border: 1px dashed}
+.lesson:not(.disable_gender_highlights) .Gender_Neut:hover,
+.lesson:not(.disable_gender_highlights) .Gender_Masc:hover,
+.lesson:not(.disable_gender_highlights) .Gender_Fem:hover {border: 1px dashed}
 
-.Gender_Neut,
-.Gender_Masc,
-.Gender_Fem {border: 1px dashed transparent}
+.lesson:not(.disable_gender_highlights) .Gender_Neut,
+.lesson:not(.disable_gender_highlights) .Gender_Masc,
+.lesson:not(.disable_gender_highlights) .Gender_Fem {border: 1px dashed transparent}
 
-.Animacy_Inan::after, .Animacy_Hum::after, .Animacy_Nhum::after {opacity:70%}
+.lesson:not(.disable_animacy_highlights) .Animacy_Inan::after,
+.lesson:not(.disable_animacy_highlights)  .Animacy_Hum::after,
+.lesson:not(.disable_animacy_highlights)  .Animacy_Nhum::after {opacity:70%}
 
-.Animacy_Inan::after {
+.lesson:not(.disable_animacy_highlights)  .Animacy_Inan::after {
     content: "⚙️♂";
     color: black;
     background-color:white;
     padding-left:3px;
 }
 
-.Animacy_Hum::after {
+.lesson:not(.disable_animacy_highlights)  .Animacy_Hum::after {
     content: "🙎‍♂️♂";
     color: black;
     background-color:white;
     padding-left:3px;
 }
-.Animacy_Nhum::after {
+.lesson:not(.disable_animacy_highlights)  .Animacy_Nhum::after {
     content: "🐶♂";
     color: black;
     background-color:white;
     padding-left:3px;
 }
 
-.Number_Ptan, .Number_Plur {
-text-decoration: underline;
+.lesson:not(.disable_number_highlights) .Number_Ptan,
+.lesson:not(.disable_number_highlights) .Number_Plur {
+    text-decoration: underline;
     text-underline-offset: 3px;
     text-decoration-color: black;
 }
-.Number_Ptan {
-  text-decoration-style: dashed;
-
+.lesson:not(.disable_number_highlights)  .Number_Ptan {
+    text-decoration-style: dashed;
 }
-.Case_Nom {
+.lesson:not(.disable_case_highlights)  .Case_Nom {
   color: #006400a6; 
   background-color: #90ee905c;
 }
-.Case_Ins {
+.lesson:not(.disable_case_highlights)  .Case_Ins {
   color: #FF8C00; 
 }
-.Case_Acc {
+.lesson:not(.disable_case_highlights) .Case_Acc {
     color: yellow; 
     background-color:lightgray;
     
 }
-.Case_Gen {
+.lesson:not(.disable_case_highlights) .Case_Gen {
     color: #DC143C; 
 }
-.Case_Loc {
+.lesson:not(.disable_case_highlights) .Case_Loc {
     color: #9400D3; 
 }
-.Case_Dat {
+.lesson:not(.disable_case_highlights)  .Case_Dat {
     color: #ff149385; 
     background-color:#ffb6c17d;
 }
-.Case_Voc {
+.lesson:not(.disable_case_highlights)  .Case_Voc {
     color: white;
     background-color:black;
 }
 
+span.highlight_controls {font-size:0.5em}
+
+button.click_to_disable_grammar:not(.disabled)::after {
+  content: '\2713';
+  color:green;
+}
