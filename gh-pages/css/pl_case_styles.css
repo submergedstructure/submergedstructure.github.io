@@ -147,7 +147,10 @@ button.click_to_disable_grammar:not(.disabled)::after {
   color:#808080a6;
 }
 
-span.highlight_controls, .tgl-trans {font-size:0.5em}
+button {
+  font-size: 0.8em;
+}
+
 
 button.tgl-trans.shown::after {
   content: '\2713';
