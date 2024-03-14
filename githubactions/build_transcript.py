@@ -146,7 +146,7 @@ for course_id, course in courses.items():
 <div class="cnt-trans">
     <p>{paragraph_text} <button class="tgl-btn">Click for translation</button></p>
     <div class="trans-cont">
-        <p class="trans">{translated['text_to_translate']}</p>
+        <p class="trans">{translated[text_to_translate]}</p>
     </div>
 </div>
 """
