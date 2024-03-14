@@ -144,7 +144,7 @@ for course_id, course in courses.items():
         paragraph_text += f"<span class=\"tk\" {attribute_string}>{text}</span>\n"
       transcript += f"""
 <div class="cnt-trans">
-    <p>{paragraph_text} <button class="tgl-trans">Click for translation</button></p>
+    <p>{paragraph_text} <button class="tgl-trans">English</button></p>
     <div class="trans-cont">
         <p class="trans">{translated[text_to_translate]}</p>
     </div>
