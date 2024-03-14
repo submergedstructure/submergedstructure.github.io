@@ -39,35 +39,67 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add the click event listener
         button.addEventListener('click', toggleGrammarHighlighting);
     });
-
-
+    // Function to remove all existing popups
+    function removeAllPopups() {
+        document.querySelectorAll('.popup').forEach(popup => {
+            popup.remove();
+        });
+    }
     
     // Function to create the popup
     function createPopup(text, target) {
+        // Remove any existing popups before creating a new one
+        removeAllPopups();
+        
         const popup = document.createElement('div');
         popup.classList.add('popup');
-        popup.innerHTML = text;
+        // Splitting the text into words
+        const words = text.split(' ');
+        // Wrapping the first word in an anchor tag
+        const firstWordWithLink = `<a href='https://en.wiktionary.org/wiki/${encodeURIComponent(words[0])}' title='wiktionary definition' target='_blank'>${words[0]}</a>`;
+        // Reassembling the text with the first word now an anchor tag
+        const newText = text.replace(words[0], firstWordWithLink);
+    
+        popup.innerHTML = newText;
         document.body.appendChild(popup);
-
+    
         // Position the popup above the target element
         const rect = target.getBoundingClientRect();
-
+    
         // Adjust the position to account for scrolling
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
+    
         popup.style.left = `${rect.left}px`;
-        popup.style.top = `${rect.bottom + scrollTop - popup.offsetHeight + 5}px`;
+        popup.style.top = `${rect.bottom + scrollTop - popup.offsetHeight}px`;
         popup.style.display = 'block';
+    
+        // Prevent the popup from being removed when mouse is over it
+        popup.addEventListener('mouseenter', function() {
+            clearTimeout(popup.timeoutId);
+        });
+    
+        // Allow the popup to be removed when mouse leaves it
+        popup.addEventListener('mouseleave', function() {
+            removePopup(popup);
+        });
     }
-
-    // Function to remove the popup
-    function removePopup() {
-        const popup = document.querySelector('.popup');
+    
+    // Updated function to remove the popup
+    function removePopup(popup) {
+        // Direct removal without timeout if specific popup is provided
         if (popup) {
             popup.remove();
+        } else {
+            // Scheduled removal of all popups, with slight delay to allow for mouse transitions
+            const popups = document.querySelectorAll('.popup');
+            popups.forEach(popup => {
+                popup.timeoutId = setTimeout(function() {
+                    popup.remove();
+                }, 100); // Adjust delay as necessary
+            });
         }
     }
-
+    
     // Attach event listeners to elements with data-tooltip
     const tt_elements = document.querySelectorAll('[data-tooltip]');
     tt_elements.forEach(el => {
@@ -75,23 +107,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const tooltipText = this.getAttribute('data-tooltip');
             createPopup(tooltipText, this);
         });
-
+    
         el.addEventListener('mouseleave', function() {
+            // Schedule popup removal, allows for transition to popup without disappearing
             removePopup();
         });
     });
-    // Attach event listeners to elements with data-is-key
-    const key_elements = document.querySelectorAll('[data-is-key]');
-    key_elements.forEach(el => {
-        el.addEventListener('mouseenter', function() {
-            const tooltipText = "{{key_html}}";
-            createPopup(tooltipText, this);
-        });
 
-        el.addEventListener('mouseleave', function() {
-            removePopup();
-        });
-    });
 });
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.tgl-trans').forEach(button => {
