@@ -93,12 +93,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.tgl-btn').forEach(button => {
+    document.querySelectorAll('.tgl-trans').forEach(button => {
         button.addEventListener('click', function() {
             var content = this.parentElement.nextElementSibling;
             var wrapper = content.querySelector('.trans');
+
+            // Toggle the 'shown' class on the button
+            this.classList.toggle('shown');
 
             if (content.style.height && content.style.height !== '0px') {
                 content.style.height = '0';
@@ -111,3 +113,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
