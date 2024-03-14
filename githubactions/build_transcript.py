@@ -13,6 +13,8 @@ import re
 
 import spacy
 
+from googletrans import Translator
+
 """# Helper Functions"""
 
 def render_template(template_path, context=None):
@@ -90,23 +92,43 @@ nlp = spacy.load(model)
 
 language_code = "pl"
 
+to_translate = set()
+# Create a dictionary of translations of paragraphs.
+# This will be used to avoid translating the same paragraph multiple times and
+# we are sending off the translations in bulk.
+course_ids = [1646223, 289027, 1440209, 1646225, 902291, 627905]
+courses = {}
+lessons = {}
+for course_id in course_ids:
+  course = courses[course_id] = get_json_response(f'https://www.lingq.com/api/v2/{language_code}/collections/{course_id}')
+  lessons[course_id] = {}
+  for lesson_from_course in course['lessons']:
+    lessons[course_id][lesson_from_course['id']] = get_json_response(f"https://www.lingq.com/api/v3/{language_code}/lessons/{lesson_from_course['id']}")
+    for paragraph in lessons[course_id][lesson_from_course['id']]['tokenizedText']:
+      p_text = ""
+      for sentence in paragraph:
+        p_text += sentence['text'] + " "
+      to_translate.add(p_text)
+translator = Translator()
+translation_objs = translator.translate(list(to_translate), dest='en', src=language_code)
+translated = {}
+for translation_obj in translation_objs:
+  translated[translation_obj.origin] = translation_obj.text
+
+
 course_list_html = ""
 
-for course_id in [1646223, 289027, 1440209, 1646225, 902291, 627905]:
-
-  course = get_json_response(f'https://www.lingq.com/api/v2/{language_code}/collections/{course_id}')
-
+for course_id, course in courses.items():
   no = 1
   players_html = ''
-  for lesson_from_course in course['lessons']:
-
-    lesson = get_json_response(f'https://www.lingq.com/api/v3/{language_code}/lessons/{lesson_from_course['id']}/')
+  for lesson in lessons[course_id].values():
 
     transcript = '';
     last_timestamp = 0;
  
     for paragraph in lesson['tokenizedText']:
       paragraph_text = ""
+      text_to_translate = ""
       for sentence in paragraph:
         if sentence['timestamp'] and sentence['timestamp'][0]:
           timestamp_start = int(float(sentence['timestamp'][0]) * 1000)
@@ -116,10 +138,18 @@ for course_id in [1646223, 289027, 1440209, 1646225, 902291, 627905]:
         else:
           timestamp_start = last_timestamp
           duration = 0
+        text_to_translate += sentence['text']+ " "
         attribute_string = f"data-m=\"{timestamp_start}\" data-d=\"{duration}\""
         text = process_paragraph(sentence['text'], attribute_string)
         paragraph_text += f"<span class=\"tk\" {attribute_string}>{text}</span>\n"
-      transcript += f"<p>{paragraph_text}</p>\n"
+      transcript += f"""
+<div class="cnt-trans">
+    <p>{paragraph_text} <button class="tgl-btn">Click for translation</button></p>
+    <div class="trans-cont">
+        <p class="trans">{translated['text_to_translate']}</p>
+    </div>
+</div>
+"""
     players_html += render_template('templates/multiplayer_player.html',
                               {'audio_url' : lesson['audioUrl'],
                               'title' : lesson['title'],

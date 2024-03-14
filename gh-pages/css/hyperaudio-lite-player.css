@@ -8,11 +8,13 @@ audio {
   top: 0;
   z-index: 1000; /* Ensure it stays on top of other content */
   background-color: white; /* Optional: to ensure text is readable against underlying content */
+
 }
+
 
 .hyperaudio-transcript p,
 .hyperaudio-transcript span {
-  line-height: 1.8em;
+  line-height: 2.5em;
 }
 
 .hyperaudio-transcript span.tk.active {
@@ -27,6 +29,7 @@ audio {
 .speaker {
   font-weight: bold;
 }
+
 .hyperaudio-transcript {
   position:relative;
   border-style:dashed;
@@ -35,3 +38,5 @@ audio {
   border-radius: 20px;
   padding: 8px
 }
+
+

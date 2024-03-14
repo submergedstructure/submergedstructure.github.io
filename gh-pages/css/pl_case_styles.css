@@ -130,9 +130,15 @@ div.lesson {
   content: "3"; 
 }
 
-span.highlight_controls {font-size:0.5em}
+span.highlight_controls, tgl-btn {font-size:0.5em}
 
 button.click_to_disable_grammar:not(.disabled)::after {
   content: '\2713';
   color:green;
+}
+
+.trans-cont {
+  overflow: hidden;
+  height: 0;
+  transition: height 0.5s ease-out;
 }

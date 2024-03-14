@@ -93,3 +93,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.tgl-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            var content = this.parentElement.nextElementSibling;
+            var wrapper = content.querySelector('.trans');
+
+            if (content.style.height && content.style.height !== '0px') {
+                content.style.height = '0';
+            } else {
+                // Reset to recalculate scrollHeight accurately
+                content.style.height = '0px';
+                content.offsetHeight; // Cause a reflow to ensure the reset took effect
+                content.style.height = `${wrapper.scrollHeight}px`;
+            }
+        });
+    });
+});
