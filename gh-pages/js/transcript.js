@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Splitting the text into words
         const words = text.split(' ');
         // Wrapping the first word in an anchor tag
-        const firstWordWithLink = `<a href='https://en.wiktionary.org/wiki/${encodeURIComponent(words[0])}' title='wiktionary definition' target='_blank'>${words[0]}</a>`;
+        const firstWordWithLink = `<a href='https://en.wiktionary.org/wiki/${encodeURIComponent(words[0])}#Polish' title='wiktionary definition' target='_blank'>${words[0]}</a>`;
         // Reassembling the text with the first word now an anchor tag
         const newText = text.replace(words[0], firstWordWithLink);
     
