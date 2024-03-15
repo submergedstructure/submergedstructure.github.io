@@ -14,6 +14,7 @@ import re
 import spacy
 
 from googletrans import Translator
+import pickle
 
 """# Helper Functions"""
 
@@ -99,6 +100,17 @@ to_translate = set()
 course_ids = [1646223, 289027, 1440209, 1646225, 902291, 627905]
 courses = {}
 lessons = {}
+
+pickled_translations_file = 'pkl_cache/translations.pkl'
+
+# Check if the cache file exists
+if os.path.exists(pickled_translations_file):
+  # Load the cache file
+  with open(pickled_translations_file, 'rb') as file:
+    translated_cache = pickle.load(file)
+else:
+  translated_cache = {}
+
 for course_id in course_ids:
   course = courses[course_id] = get_json_response(f'https://www.lingq.com/api/v2/{language_code}/collections/{course_id}')
   lessons[course_id] = {}
@@ -108,12 +120,25 @@ for course_id in course_ids:
       p_text = ""
       for sentence in paragraph:
         p_text += sentence['text'] + " "
-      to_translate.add(p_text)
+      if p_text not in translated_cache:
+        to_translate.add(p_text)
+
 translator = Translator()
 translation_objs = translator.translate(list(to_translate), dest='en', src=language_code)
-translated = {}
+
+# Update the cache with new translations
 for translation_obj in translation_objs:
-  translated[translation_obj.origin] = translation_obj.text
+  if translation_obj.origin not in translated_cache:
+    translated_cache[translation_obj.origin] = translation_obj.text
+
+# Create the directory if it does not exist
+os.makedirs(os.path.dirname(pickled_translations_file), exist_ok=True)
+
+# Save the cache to the file
+with open(pickled_translations_file, 'wb') as file:
+  pickle.dump(translated_cache, file)
+  
+translated = translated_cache
 
 
 course_list_html = ""

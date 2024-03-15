@@ -44,10 +44,10 @@ jobs:
 
 
         
-      # - name: build_transcript
-      #   env:
-      #     LINGQ_API_KEY: ${{ secrets.LINGQ_API_KEY }}
-      #   run: python githubactions/build_transcript.py
+      - name: build_transcript
+        env:
+          LINGQ_API_KEY: ${{ secrets.LINGQ_API_KEY }}
+        run: python githubactions/build_transcript.py
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -58,10 +58,11 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
       
-      # - name: Commit changes
-      #   run: |
-      #     git config --local user.email "action@github.com"
-      #     git config --local user.name "GitHub Action"
-      #     git add gh-pages
-      #     git commit -m "generated new transcripts"
-      #     git push
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add gh-pages
+          git add pkl_cache
+          git commit -m "generated new transcripts"
+          git push
