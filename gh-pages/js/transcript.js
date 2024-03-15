@@ -118,19 +118,26 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.tgl-trans').forEach(button => {
         button.addEventListener('click', function() {
-            var content = this.parentElement.nextElementSibling;
-            var wrapper = content.querySelector('.trans');
+            var lesson = this.closest('.lesson');
+            var transElements = lesson.querySelectorAll('.trans');
 
             // Toggle the 'shown' class on the button
             this.classList.toggle('shown');
 
-            if (content.style.height && content.style.height !== '0px') {
-                content.style.height = '0';
-            } else {
-                // Reset to recalculate scrollHeight accurately
-                content.style.height = '0px';
-                content.offsetHeight; // Cause a reflow to ensure the reset took effect
-                content.style.height = `${wrapper.scrollHeight}px`;
+            if (transElements.length > 0) {
+                transElements.forEach(transElement => {
+                    if (transElement.style.height && transElement.style.height !== '0px') {
+                        transElement.style.height = '0';
+                        transElement.parentElement.style.height = '0';
+                    } else {
+                        // Reset to recalculate scrollHeight accurately
+                        transElement.style.height = '0px';
+                        transElement.parentElement.style.height = '0px';
+                        transElement.offsetHeight; // Cause a reflow to ensure the reset took effect
+                        transElement.style.height = `${transElement.scrollHeight}px`;
+                        transElement.parentElement.style.height = `${transElement.scrollHeight}px`;
+                    }
+                });
             }
         });
     });
