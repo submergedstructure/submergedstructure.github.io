@@ -215,7 +215,7 @@ for course_id, course in courses.items():
 
   initialise_players = ''
   for n in range(1, no):
-    initialise_players += f"new HyperaudioLite(\"hypertranscript{n}\", \"hyperplayer{n}\", minimizedMode, autoScroll, doubleClick, webMonetization, playOnClick);\n"
+    initialise_players += f"new HyperaudioLite(\"hypertranscript{n}\", \"hyperplayer{n}\");\n"
 
   html = render_template('templates/multiplayer_body.html',
                               {'title' : course['title'],
