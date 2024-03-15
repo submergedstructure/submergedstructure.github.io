@@ -58,10 +58,10 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
       
-      - name: Commit changes
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add gh-pages
-          git commit -m "generated new transcripts"
-          git push
+      # - name: Commit changes
+      #   run: |
+      #     git config --local user.email "action@github.com"
+      #     git config --local user.name "GitHub Action"
+      #     git add gh-pages
+      #     git commit -m "generated new transcripts"
+      #     git push
