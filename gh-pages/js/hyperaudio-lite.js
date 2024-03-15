@@ -36,9 +36,6 @@ class HyperaudioLite {
     this.transcript = document.getElementById(transcriptId);
 
     this.wordIndex = 0;
-
-    this.playerPaused = true;
-
     //Create the array of timed elements (wordArr)
 
     const words = this.transcript.querySelectorAll('[data-m]');
@@ -57,12 +54,57 @@ class HyperaudioLite {
     }
 
     this.myPlayer = new nativePlayer(this);
-    this.parentElementIndex = 0;
     words[0].classList.add('active');
 
 
     this.transcript.addEventListener('click', this.setPlayHead, false);
     this.transcript.addEventListener('click', this.checkPlayHead, false);
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === ' ') {
+          event.preventDefault();
+          console.log('Space key was pressed');
+          if (this.myPlayer.paused === false ){
+            this.myPlayer.pause(); 
+            this.pausePlayHead();
+          }
+          
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'a') {
+        if (this.myPlayer.paused === false ){
+          event.preventDefault();
+          if (this.wordArr[this.wordIndex - 3]) {
+            this.seekTo(this.wordArr[this.wordIndex - 3].m / 1000);
+          }
+        }
+          
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 's') {
+        if (this.myPlayer.paused === false ){
+          event.preventDefault();
+          if (this.wordArr[this.wordIndex -2]) {
+            this.seekTo(this.wordArr[this.wordIndex -2].m / 1000);
+          }
+        }
+          
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'd') {
+        if (this.myPlayer.paused === false ){
+          event.preventDefault();
+          if (this.wordArr[this.wordIndex -1]) {
+            this.seekTo(this.wordArr[this.wordIndex -1].m / 1000);
+          }
+          
+        }
+          
+      }
+    });
 
 
   };
@@ -72,6 +114,7 @@ class HyperaudioLite {
 
     words.forEach((word, i) => {
       const m = parseInt(word.getAttribute('data-m'));
+      const d = parseInt(word.getAttribute('data-d'));
       let p = word.parentNode;
       while (p !== document) {
         if (
@@ -83,7 +126,7 @@ class HyperaudioLite {
         }
         p = p.parentNode;
       }
-      wordArr[i] = { n: words[i], m: m, p: p };
+      wordArr[i] = { n: words[i], m: m, p: p, d: d};
     });
 
     return wordArr;
@@ -92,26 +135,20 @@ class HyperaudioLite {
   setPlayHead = e => {
     const target = e.target ? e.target : e.srcElement;
 
-    // clear elements with class='active'
-    let activeElements = Array.from(this.transcript.getElementsByClassName('active'));
-
-    activeElements.forEach(e => {
-      e.classList.remove('active');
-    });
-
-    if (this.myPlayer.paused === true && target.getAttribute('data-m') !== null) {
-      target.classList.add('active');
-      target.parentNode.classList.add('active');
-    }
-
     const timeSecs = parseInt(target.getAttribute('data-m')) / 1000;
-    this.updateTranscriptVisualState(timeSecs);
+
+    this.seekTo(timeSecs);
+
+  };
+
+  seekTo = (timeSecs) => {
+    this.wordIndex = this.updateTranscriptVisualState(timeSecs);
 
     if (!isNaN(parseFloat(timeSecs))) {
       this.myPlayer.setTime(timeSecs);
       this.myPlayer.play();
     }
-  };
+  }
 
   clearTimer = () => {
     if (this.timer) clearTimeout(this.timer);
@@ -138,14 +175,13 @@ class HyperaudioLite {
   }
 
   checkStatus = () => {
-    //check for end time of shared piece
 
     let interval = 0;
 
     if (this.myPlayer.paused === false) {
 
-      let indices = this.updateTranscriptVisualState(this.currentTime);
-      let index = indices.currentWordIndex;
+
+      let index = this.updateTranscriptVisualState(this.currentTime);
       this.wordIndex = index;
 
       if (this.wordArr[index]) {
@@ -183,14 +219,11 @@ class HyperaudioLite {
       }
     }
 
-    this.wordArr.forEach((word, i) => {
-      let classList = word.n.classList;
-      let parentClassList = word.n.parentNode.classList;
+    // clear elements with class='active'
+    let activeElements = Array.from(this.transcript.getElementsByClassName('active'));
 
-      if (i < index) {
-        classList.remove('active');
-        parentClassList.remove('active');
-      }
+    activeElements.forEach(e => {
+      e.classList.remove('active');
     });
 
 
@@ -215,23 +248,7 @@ class HyperaudioLite {
       }
     } 
 
-    // Establish current paragraph index
-    let currentParentElementIndex;
-
-    Array.from(this.parentElements).every((el, i) => {
-      if (el.classList.contains('active')) {
-        currentParentElementIndex = i;
-        return false;
-      }
-      return true;
-    });
-
-    let indices = {
-      currentWordIndex: index,
-      currentParentElementIndex: currentParentElementIndex,
-    };
-
-    return indices;
+    return index;
   };
 
 
