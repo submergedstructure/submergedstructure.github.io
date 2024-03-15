@@ -44,10 +44,10 @@ jobs:
 
 
         
-      - name: build_transcript
-        env:
-          LINGQ_API_KEY: ${{ secrets.LINGQ_API_KEY }}
-        run: python githubactions/build_transcript.py
+      # - name: build_transcript
+      #   env:
+      #     LINGQ_API_KEY: ${{ secrets.LINGQ_API_KEY }}
+      #   run: python githubactions/build_transcript.py
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
