@@ -1,0 +1,45 @@
+/*! (C) The Hyperaudio Project. MIT @license: en.wikipedia.org/wiki/MIT_License. */
+/* Updated for Version 2.1 */
+
+audio {
+  position: relative;
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensure it stays on top of other content */
+  background-color: white; /* Optional: to ensure text is readable against underlying content */
+
+}
+
+
+.hyperaudio-transcript p,
+.hyperaudio-transcript span {
+  line-height: 2.5em;
+}
+
+.hyperaudio-transcript span.tk.active {
+  border-bottom: 8px solid lightgray;
+  padding-bottom: 5px;
+}
+
+[data-m] {
+  cursor: pointer;
+}
+
+.speaker {
+  font-weight: bold;
+}
+
+.hyperaudio-transcript {
+  position:relative;
+  border-style:dashed;
+  border-width: 1px;
+  border-color:#999;
+  border-radius: 20px;
+  padding: 8px
+}
+
+
+button.tgl-trans {
+  float:right;
+}
