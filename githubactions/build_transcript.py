@@ -97,7 +97,7 @@ to_translate = set()
 # Create a dictionary of translations of paragraphs.
 # This will be used to avoid translating the same paragraph multiple times and
 # we are sending off the translations in bulk.
-course_ids = [1646223, 289027, 1440209, 1646225, 902291, 627905, 1679887]
+course_ids = [1646223, 289027, 1440209, 1646225, 902291, 627905, 1680723]
 
 pickled_translations_file = 'pkl_cache/translations.pkl'
 pickled_courses_file = 'pkl_cache/courses.pkl'
